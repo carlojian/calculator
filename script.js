@@ -6,12 +6,7 @@ let secondNumber = ""
 let operator = ""
 let sum = 0
 
-function clear(){
-    firstNumber = ""
-    secondNumber = ""
-    operator = ""
-    sum = 0
-}
+
 
 function getFirstNumber(value) {
     if (operator.length === 0 && Number.isInteger(parseInt(value))) {
@@ -19,7 +14,8 @@ function getFirstNumber(value) {
         firstNumber += value
         console.log("first number: " + firstNumber)
 
-        
+        modifyDisplay(firstNumber)
+
     }
 }
 
@@ -29,7 +25,7 @@ function getSecondNumber(value) {
         secondNumber += value
         console.log("second number: " + secondNumber)
 
-       
+        modifyDisplay(secondNumber)
     }
 }
 
@@ -40,6 +36,8 @@ function getOperator(value) {
     if (operator.length === 0 && !Number.isInteger(parseInt(value))) {
         operator = value
         console.log("operator " + operator)
+        modifyDisplay(operator)
+
     } else if (!Number.isInteger(parseInt(value))) {
         // operator already set: if both numbers present compute sum, otherwise just replace operator
         if (firstNumber.length > 0 && secondNumber.length > 0) {
@@ -48,9 +46,11 @@ function getOperator(value) {
             firstNumber = String(sum)
             secondNumber = ""
             operator = value
+            modifyDisplay(sum)
         } else {
             operator = value
             console.log("operator replaced: " + operator)
+            modifyDisplay(operator)
         }
     }
 }
@@ -65,6 +65,7 @@ container.addEventListener("click", (e) => {
     } else if (value == "=") {
         sum = (operate(parseInt(firstNumber), parseInt(secondNumber), operator))
         console.log("sum = " + sum)
+        modifyDisplay(sum)
 
         firstNumber = sum
         operator = ""
@@ -87,8 +88,18 @@ container.addEventListener("click", (e) => {
 
 })
 
+function modifyDisplay(val){
+    display.textContent = ""
+    display.textContent = val
+}
 
-
+function clear(){
+    firstNumber = ""
+    secondNumber = ""
+    operator = ""
+    sum = 0
+    display.textContent = 0
+}
 
 function operate(number1, number2, operator){
     switch (operator){
