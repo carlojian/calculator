@@ -60,16 +60,22 @@ container.addEventListener("click", (e) => {
 
     if (operator.length == 0 && Number.isInteger(parseInt(value))) {
         getFirstNumber(value)
-    } else if ((operator.length > 0 || sum > 0) && Number.isInteger(parseInt(value))) {
+    } 
+    
+    else if ((operator.length > 0 || sum > 0) && Number.isInteger(parseInt(value))) {
         getSecondNumber(value)
-    } else if (value == "=") {
+    } 
+    
+    else if (value == "=") {
         sum = (operate(parseInt(firstNumber), parseInt(secondNumber), operator))
         console.log("sum = " + sum)
+        clear()
         modifyDisplay(sum)
 
-        firstNumber = sum
-        operator = ""
-        secondNumber = ""
+        // firstNumber = sum
+        // operator = ""
+        // secondNumber = ""
+        
 
         if (sum == "Infinity"){
             alert("DON'T EVER TRY THAT AGAIN!")
@@ -97,7 +103,6 @@ function clear(){
     firstNumber = ""
     secondNumber = ""
     operator = ""
-    sum = 0
     display.textContent = 0
 }
 
